@@ -13,12 +13,7 @@ export default class App extends React.Component{
   /*const [isLoadingComplete, setLoadingComplete] = useState(false);*/
   render() {
     return(
-      <View style={{
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'stretch',
-        marginTop: 30,
-      }}>
+      <View style={styles.container}>
         <ScreenHome/>
       </View>
       )
@@ -76,5 +71,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    marginTop: 30,
   },
 });
