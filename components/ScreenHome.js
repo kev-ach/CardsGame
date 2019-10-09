@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View,TextInput,Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ContainerSettings from './ContainerSettings';
+import {Search} from './Search';
 
 //import Styles from "./assets/css/Styles"
 //import AppNavigator from './navigation/AppNavigator';
@@ -16,6 +17,7 @@ export default class ScreenHome extends React.Component{
         <View style={styles.titleFlex} >
           <Text style={styles.title}>Cards Game</Text>
           <ContainerSettings />
+          <Search />
         </View>
       </View>
     );
