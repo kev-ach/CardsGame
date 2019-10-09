@@ -4,20 +4,29 @@ import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View,TextInput,Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import ContainerSettings from './ContainerSettings';
-import {Search} from './Search';
+import ContainerSettings from '../components/ContainerSettings';
+import Search from '../components/Search';
+import { Button } from 'react-native-elements';
 
 //import Styles from "./assets/css/Styles"
-//import AppNavigator from './navigation/AppNavigator';
 
 export default class ScreenHome extends React.Component{
+  
   render(){
+    
     return (
       <View style={styles.container}>
         <View style={styles.titleFlex} >
           <Text style={styles.title}>Cards Game</Text>
           <ContainerSettings />
           <Search />
+          <View style={styles.bottom}>
+            <Button
+              style={styles.button}
+              title="Jouer"
+              type="outline"
+              onPress={() => this.props.navigation.navigate('Game')} />
+          </View>
         </View>
       </View>
     );
@@ -27,24 +36,35 @@ export default class ScreenHome extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'skyblue',
     flexDirection: 'column',
     alignItems: 'stretch',
-  },
-  message: {
-    flex: 10,
-    backgroundColor: 'white',
-    flexDirection: 'row',
+    paddingTop:100
   },
   titleFlex: {
     flex: 1,
     height: 50, 
-    backgroundColor: 'powderblue'
   },
   title: {
     fontSize: 30,
     textAlign: 'center',
-    color:'white',
+    color:'grey',
   },
+  search: {
+    flex: 5,
+  },
+  buttonJouer: {
+    flex: 1,
+    position: 'absolute',
+    justifyContent: 'flex-end',
+    bottom:10
+  },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    padding: 36
+  },
+  button: {
+    width: 300,
+  }
 });
 

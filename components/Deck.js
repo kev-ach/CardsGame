@@ -2,48 +2,19 @@
 import React, { useState } from 'react';
 import { Platform,TouchableHighlight, Modal, StatusBar, StyleSheet, View,TextInput,Text,FlatList, Button,Picker } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
+import Swiper from 'react-native-deck-swiper'
 //import Styles from "./assets/css/Styles"
 //import AppNavigator from './navigation/AppNavigator';
 
-export default class ContainerSettings extends React.Component{
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      pickerSelection: 'Default value!',
-      pickerDisplayed: false
-    }
-  }
-
-    setPickerValue(newValue) {
-      this.setState({
-        pickerSelection: newValue
-      })
-  
-      this.togglePicker();
-    }
-  
-    togglePicker() {
-      this.setState({
-        pickerDisplayed: !this.state.pickerDisplayed
-      })
-    }
+export default class Deck extends React.Component{
   
   render(){
     return (
       <View style={styles.container}>
         <View style={styles.half1}>
-          <Picker>
-              <Picker.Item label="😀" />
-              <Picker.Item label="😄"/>
-          </Picker>
+            
         </View>
         <View style={styles.half2}>
-          <TextInput
-            style={styles.textPseudo}
-            placeholder="Pseudo"
-          />
         </View>  
       </View>
     );
@@ -62,7 +33,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
   },
   half2: {
-    flex: 3,
+    flex: 2,
     backgroundColor: 'red',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
@@ -71,5 +42,28 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 15
   },
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF'
+  },
+  card: {
+    flex: 1,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: '#E8E8E8',
+    justifyContent: 'center',
+    backgroundColor: 'white'
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 50,
+    backgroundColor: 'transparent'
+  },
+  done: {
+    textAlign: 'center',
+    fontSize: 30,
+    color: 'white',
+    backgroundColor: 'transparent'
+  }
 });
 

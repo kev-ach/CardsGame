@@ -4,23 +4,13 @@ import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import ScreenHome from './components/ScreenHome';
 
+import AppNavigator from './navigation/AppNavigator';
 
-//import AppNavigator from './navigation/AppNavigator';
+export default function App(props) {
+  const [isLoadingComplete, setLoadingComplete] = useState(false);
 
-export default class App extends React.Component{
-  /*const [isLoadingComplete, setLoadingComplete] = useState(false);*/
-  render() {
-    return(
-      <View style={styles.container}>
-        <ScreenHome/>
-      </View>
-      )
-    }
-      
-
-  /*if (!isLoadingComplete && !props.skipLoadingScreen) {
+  if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
       <AppLoading
         startAsync={loadResourcesAsync}
@@ -36,9 +26,6 @@ export default class App extends React.Component{
       </View>
     );
   }
-      )
-  }*/
-  
 }
 
 async function loadResourcesAsync() {
@@ -70,9 +57,6 @@ function handleFinishLoading(setLoadingComplete) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    alignItems: 'stretch',
-    marginTop: 30,
+    backgroundColor: 'red',
   },
 });
