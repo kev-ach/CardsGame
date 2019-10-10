@@ -6,14 +6,14 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 // import AppNavigator from './navigation/AppNavigator';
-import Draggable from './components/Draggable';
+import Pioches from './components/Pioches';
 
 export default class App extends React.Component {
 
   render() {
     return (
       <View>
-        <Draggable />
+        <Pioches />
       </View>
     )
   }
