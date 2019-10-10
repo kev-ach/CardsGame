@@ -6,14 +6,15 @@ import { Platform, StatusBar, StyleSheet, View,TextInput,Text } from 'react-nati
 import { Ionicons } from '@expo/vector-icons';
 import ContainerSettings from '../components/ContainerSettings';
 import Search from '../components/Search';
+import CreePartie from '../components/CreePartie';
 import { Button } from 'react-native-elements';
 
 //import Styles from "./assets/css/Styles"
 
 export default class ScreenHome extends React.Component{
-  
+
   render(){
-    
+
     return (
       <View style={styles.container}>
         <View style={styles.titleFlex} >
@@ -25,7 +26,8 @@ export default class ScreenHome extends React.Component{
               style={styles.button}
               title="Jouer"
               type="outline"
-              onPress={() => this.props.navigation.navigate('Game')} />
+              onPress={() => <CreePartie />} />
+              {/*onPress={() => this.props.navigation.navigate('Game')}*/}
           </View>
         </View>
       </View>
@@ -42,12 +44,12 @@ const styles = StyleSheet.create({
   },
   titleFlex: {
     flex: 1,
-    height: 50, 
+    height: 50,
   },
   title: {
     fontSize: 30,
     textAlign: 'center',
-    color:'grey',
+    color:'black',
   },
   search: {
     flex: 5,
@@ -67,4 +69,3 @@ const styles = StyleSheet.create({
     width: 300,
   }
 });
-

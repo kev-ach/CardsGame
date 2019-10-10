@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   titleFlex: {
     flex: 1,
-    height: 50, 
+    height: 50,
   },
   title: {
     fontSize: 30,
@@ -65,4 +65,3 @@ const styles = StyleSheet.create({
     backgroundColor: 'skyblue'
   },
 });
-
