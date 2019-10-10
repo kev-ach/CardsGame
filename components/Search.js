@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View,TextInput,Text } from 'react-native';
 import { SearchBar } from 'react-native-elements';
@@ -15,7 +14,7 @@ export default class Search extends React.Component{
     updateSearch = search => {
         this.setState({ search });
     };
-    
+
   render(){
     const { search } = this.state;
 
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
   },
   titleFlex: {
     flex: 1,
-    height: 50, 
+    height: 50,
     backgroundColor: 'powderblue'
   },
   title: {
@@ -51,4 +50,3 @@ const styles = StyleSheet.create({
     color:'white',
   },
 });
-
