@@ -2,11 +2,17 @@
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View,TextInput,Text } from 'react-native';
 import Deck from '../components/Deck';
+import PlayerHand from '../components/PlayerHand';
+// import Pioches from '../components/Pioches';
 
 //import Styles from "./assets/css/Styles"
 //import AppNavigator from './navigation/AppNavigator';
 
 export default class Game extends React.Component{
+  constructor(props) {
+    super(props);
+  }
+  
   render(){
     return (
       <View style={styles.container}>
@@ -14,7 +20,8 @@ export default class Game extends React.Component{
         <View style={styles.deck_Pioches}>
             <Deck/>
         </View>
-        <View style={styles.carte}></View>
+        <PlayerHand />
+        {/* <View style={styles.carte}></View> */}
       </View>
     );
   }
@@ -25,6 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'stretch',
+    zIndex:1
   },
   titleFlex: {
     flex: 1,
@@ -58,11 +66,13 @@ const styles = StyleSheet.create({
   },
   deck_Pioches: {
     flex: 3,
-    backgroundColor: 'grey'
+    backgroundColor: 'grey',
+    zIndex:2
   },
   carte: {
     flex: 2,
-    backgroundColor: 'skyblue'
+    backgroundColor: 'skyblue',
+    zIndex:1
   },
 });
 

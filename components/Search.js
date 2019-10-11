@@ -1,35 +1,134 @@
 
 import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View,TextInput,Text } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+import { Platform, StatusBar, StyleSheet, View,TextInput,Text,FlatList, ActivityIndicator,TouchableWithoutFeedback, Alert } from 'react-native';
+import { ListItem, SearchBar } from 'react-native-elements';
 
 //import Styles from "./assets/css/Styles"
 //import AppNavigator from './navigation/AppNavigator';
 
 export default class Search extends React.Component{
 
-    state = {
-        search: '',
-    };
+  constructor(props) {
+    super(props);
 
-    updateSearch = search => {
-        this.setState({ search });
+    this.state = {
+      loading: false,
+      data: [{
+        id: 1,
+        image: 'https://www.fivelittlechefs.com/wp-content/uploads/2016/02/stpatricks-soft-pretzel.jpg',
+        food: 'Cinnamon sugar soft pretzel',
+        title: 'Perfect soft pretzels',
+        user: 'https://0.gravatar.com/avatar/9b1a243cd301d1ba99865937f4e7cc94?s=130&d=mm&r=g',
+        by: 'Kimberly',
+      },{
+        id: 2,
+        image: 'https://www.fivelittlechefs.com/wp-content/uploads/2012/02/strawberry-rocky-road-recipe.jpg',
+        food: 'Strawberry Rocky Road',
+        title: 'Awesome strawberry aww',
+        user: 'https://0.gravatar.com/avatar/9b1a243cd301d1ba99865937f4e7cc94?s=130&d=mm&r=g',
+        by: 'Kimberly',
+    },
+    {
+        id: 3,
+        image: 'https://www.fivelittlechefs.com/wp-content/uploads/2016/02/valentine-coconut-macaroons.jpg',
+        food: 'Coconut Macaroons',
+        title: 'Coconut macaroons is truly an easy recipe',
+        user: 'https://0.gravatar.com/avatar/9b1a243cd301d1ba99865937f4e7cc94?s=130&d=mm&r=g',
+        by: 'Kimberly',
+    }],
+      error: null,
     };
+    this.arrayholder = [];
+  }
+
+  componentDidMount() {
+    this.arrayholder = this.state.data ;
+  }
+
+
+  renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: '86%',
+          backgroundColor: '#CED0CE',
+          marginLeft: '14%',
+        }}
+      />
+    );
+  };
+
+  searchFilterFunction = text => {
+    this.setState({
+      value: text,
+    });
+
+    const newData = this.arrayholder.filter(item => {
+      const itemData = `${item.by.toUpperCase()}${item.food.toUpperCase()}${item.title.toUpperCase()}`;
+      const textData = text.toUpperCase();
+
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({
+      data: newData,
+    });
+  };
+
+  renderHeader = () => {
+    return (
+      <SearchBar
+        placeholder="Type Here..."
+        lightTheme
+        round
+        onChangeText={text => this.searchFilterFunction(text)}
+        autoCorrect={false}
+        value={this.state.value}
+      />
+    );
+  };
+
+  twoOptionAlertHandler=()=>{
+    //function to make two option alert
+    Alert.alert(
+      //title
+      '',
+      //body
+      'Rejoindre la partie?',
+      [
+        {text: 'Oui', onPress: () => this.props.navigation.navigate('Game')},
+        {text: 'Non', onPress: () => console.log('No Pressed'), style: 'cancel'},
+      ],
+      { cancelable: false }
+      //clicking out side of alert will not cancel
+    );
+  }
     
   render(){
-    const { search } = this.state;
+    if (this.state.loading) {
+      return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <ActivityIndicator />
+        </View>
+      );
+    }
 
     return (
-        <View>
-            <SearchBar
-                placeholder="Search..."
-                onChangeText={this.updateSearch}
-                value={search}
-                lightTheme= {true}
-                round= {true}
-                barTintColor='#2222221A'
+      <View style={{ flex: 1 }}>
+        <FlatList
+          data={this.state.data}
+          renderItem={({ item }) => (
+            <ListItem 
+              title={`${item.by} `}
+              subtitle={item.title}
+              onPress={this.twoOptionAlertHandler}
             />
-        </View>
+          )}
+          keyExtractor={item => item.food}
+          ItemSeparatorComponent={this.renderSeparator}
+          ListHeaderComponent={this.renderHeader}
+        />
+      </View>
     );
   }
 }

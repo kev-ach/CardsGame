@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, PanResponder, Animated } from "react-native";
+import { StyleSheet, View, Text, PanResponder, Animated, Image } from "react-native";
 
 export default class Cards extends React.Component {
   constructor(props) {
@@ -86,11 +86,13 @@ export default class Cards extends React.Component {
     if (this.state.showDraggable) {
       return (
         <View style={{ position: "absolute" }}>
-          <Animated.Image
+          <Animated.View
             {...this.panResponder.panHandlers}
-            style={[panStyle, styles.card, {opacity:this.state.opacity}]}
-            source={require('../assets/cards/gray_back.png')}
-          />
+            style={[panStyle, styles.card, {opacity:this.state.opacity}]}>
+              <Image source={require('../assets/cards/green_back.png')}
+              style={styles.card}/>
+            
+          </Animated.View>
         </View>
       );
     }
@@ -129,8 +131,10 @@ const styles = StyleSheet.create({
         color       : '#fff'
     },
     card      : {
+        borderColor:'red',
         backgroundColor     : '#1abc9c',
         width               : CARD*2,
-        height              : CARD*3,
+        height              : CARD*3, 
+        position:"absolute"
     }
   });

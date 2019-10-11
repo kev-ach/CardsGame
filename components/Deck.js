@@ -7,15 +7,21 @@ import { Component,
   PanResponder,
   Animated,
   Dimensions,
-  TouchableOpacity } from 'react-native';
+  TouchableOpacity,
+  Image } from 'react-native';
 import Cards from './Cards';
 //import Styles from "./assets/css/Styles"
 //import AppNavigator from './navigation/AppNavigator';
 import * as Actions from '../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class Deck extends React.Component{
+class Deck extends React.Component{
   constructor(props) {
     super(props);
+    this.state = {
+      top: new Animated.Value(-175 / 2),
+    };
   }
 
   render(){
@@ -23,10 +29,18 @@ export default class Deck extends React.Component{
       return (
         <View style={styles.container}>
           <View style={styles.half1}>
-            <TouchableOpacity
-              onPress={() => { this.shuffle(); }}>
-              <Cards />
-            </TouchableOpacity>
+            <Cards />
+            <View>
+              <Animated.View>
+                <TouchableOpacity
+                  onPress={() => { this.shuffle(); }}>
+                    <Image resizeMode="stretch"
+                    source={require('../assets/cards/green_back.png')}
+                    style={[styles.card, {}]}/>
+                  {/* <Cards /> */}
+                </TouchableOpacity>
+              </Animated.View>
+            </View>            
             {/* {names.map(function(name, index){
               return <Cards key={index} />;
             })}   */}          
@@ -64,14 +78,18 @@ export default class Deck extends React.Component{
       {
         iterations: 3,
       }
-    ).start();
+    ).start(() => {
+      this.props.startGame();
+    });
   }
 }
 
+let CARD = 50;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    zIndex: 20
   },
   half1: {
     flex: 1,
@@ -87,5 +105,25 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 15
   },
+  card      : {
+    borderColor:'red',
+    backgroundColor     : '#1abc9c',
+    width               : CARD*2,
+    height              : CARD*3, 
+    position:"absolute"
+  }
 });
+
+function mapStateToProps(state) {
+  return {
+    gameStart: state.dataReducer.gameStart,
+    gameStarting: state.dataReducer.gameStarting,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(Actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Deck);
 
