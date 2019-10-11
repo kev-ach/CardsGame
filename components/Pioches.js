@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import commonStyle from '../styles';
 import * as Actions from '../actions';
 
-class Pioches extends React.Component {
+export default class Pioches extends React.Component {
   render() {
     return (
       <View>
@@ -42,7 +42,7 @@ class Pioches extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+/* function mapStateToProps(state) {
   return {
     openDeck: state.dataReducer.openDeck,
     deck: state.dataReducer.deck,
@@ -53,4 +53,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Pioches);
+export default connect(mapStateToProps, mapDispatchToProps)(Pioches); */

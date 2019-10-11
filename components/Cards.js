@@ -9,7 +9,8 @@ export default class Cards extends React.Component {
       showDraggable: true,
       dropAreaValues: null,
       pan: new Animated.ValueXY(),
-      opacity: new Animated.Value(1)
+      opacity: new Animated.Value(1),
+      source: require('../assets/cards/green_back.png')
     };
   }
 
@@ -34,12 +35,15 @@ export default class Cards extends React.Component {
             Animated.timing(this.state.opacity, {
               toValue: 0,
               duration: 1000
-            }).start(() =>
+            }).start()
+          } else if (this.isPlayArea(gesture)) {
               this.setState({
-                showDraggable: false
-              })
-            );
-          } 
+              source: require('../assets/cards/8H.png')
+            })
+          } else {
+            this.setState({source: require('../assets/cards/8S.png')})
+            
+          } console.log(this.state.pan.y)
         } 
         /* onPanResponderRelease           : (e, gesture) => {
             Animated.spring(            //Step 1
@@ -54,9 +58,13 @@ export default class Cards extends React.Component {
     return gesture.moveY < 200;
   }
 
+  isPlayArea(gesture) {
+    return gesture.moveY < 0;
+  }
+
   render() {
     return (
-      <View style={{ width: "20%", alignItems: "center" }}>
+      <View>
         {this.renderDraggable()}
       </View>
     );
@@ -81,21 +89,19 @@ export default class Cards extends React.Component {
 
   renderDraggable() {
     const panStyle = {
-      transform: this.state.pan.getTranslateTransform()
+      transform: this.state.pan.getTranslateTransform(),           
     }
-    if (this.state.showDraggable) {
+    
       return (
-        <View style={{ position: "absolute" }}>
-          <Animated.View
+        <View style={styles.wrapper}>
+          <Animated.Image
             {...this.panResponder.panHandlers}
-            style={[panStyle, styles.card, {opacity:this.state.opacity}]}>
-              <Image source={require('../assets/cards/green_back.png')}
-              style={styles.card}/>
-            
-          </Animated.View>
+            style={[panStyle, styles.card, {opacity:this.state.opacity}]}
+            source={this.state.source}
+            />
         </View>
       );
-    }
+    
   }
 }
 
@@ -105,6 +111,9 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'row',
+    },
+    wrapper: {
+      position: 'relative',      
     },
     half1: {
       flex: 1,
@@ -134,7 +143,7 @@ const styles = StyleSheet.create({
         borderColor:'red',
         backgroundColor     : '#1abc9c',
         width               : CARD*2,
-        height              : CARD*3, 
-        position:"absolute"
-    }
+        height              : CARD*3,
+        position: 'absolute',
+    },
   });

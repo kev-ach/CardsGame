@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View,TextInput,Text } from 'react-native';
 import Deck from '../components/Deck';
-import PlayerHand from '../components/PlayerHand';
+// import PlayerHand from '../components/PlayerHand';
 // import Pioches from '../components/Pioches';
 
 //import Styles from "./assets/css/Styles"
@@ -12,7 +12,7 @@ export default class Game extends React.Component{
   constructor(props) {
     super(props);
   }
-  
+
   render(){
     return (
       <View style={styles.container}>
@@ -20,8 +20,8 @@ export default class Game extends React.Component{
         <View style={styles.deck_Pioches}>
             <Deck/>
         </View>
-        <PlayerHand />
-        {/* <View style={styles.carte}></View> */}
+        
+        <View style={styles.carte}></View>
       </View>
     );
   }

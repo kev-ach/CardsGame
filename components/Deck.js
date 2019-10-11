@@ -16,34 +16,40 @@ import * as Actions from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class Deck extends React.Component{
-  constructor(props) {
+export default class Deck extends React.Component{
+  /* constructor(props) {
     super(props);
     this.state = {
       top: new Animated.Value(-175 / 2),
     };
-  }
+  } */
 
   render(){
       // var names = ['Jake', 'Jon', 'Thruster','Nam'];
       return (
         <View style={styles.container}>
           <View style={styles.half1}>
-            <Cards />
-            <View>
+          <Cards />
+          <Cards />
+          <Cards />
+            
+            
+
+            {/* <View>
               <Animated.View>
                 <TouchableOpacity
                   onPress={() => { this.shuffle(); }}>
                     <Image resizeMode="stretch"
                     source={require('../assets/cards/green_back.png')}
                     style={[styles.card, {}]}/>
-                  {/* <Cards /> */}
+                  <Cards />
                 </TouchableOpacity>
               </Animated.View>
-            </View>            
+            </View> */}  
+
             {/* {names.map(function(name, index){
               return <Cards key={index} />;
-            })}   */}          
+            })}           */}
           </View>
           <View style={styles.half2}>            
           </View>         
@@ -51,7 +57,7 @@ class Deck extends React.Component{
       );
   }
 
-  shuffle() {
+  /* shuffle() {
     this.props.dealCards();
     this.playAnimation();
   }
@@ -81,7 +87,7 @@ class Deck extends React.Component{
     ).start(() => {
       this.props.startGame();
     });
-  }
+  } */
 }
 
 let CARD = 50;
@@ -109,12 +115,11 @@ const styles = StyleSheet.create({
     borderColor:'red',
     backgroundColor     : '#1abc9c',
     width               : CARD*2,
-    height              : CARD*3, 
-    position:"absolute"
+    height              : CARD*3,
   }
 });
 
-function mapStateToProps(state) {
+/* function mapStateToProps(state) {
   return {
     gameStart: state.dataReducer.gameStart,
     gameStarting: state.dataReducer.gameStarting,
@@ -125,5 +130,5 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(Actions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Deck);
+export default connect(mapStateToProps, mapDispatchToProps)(Deck); */
 
