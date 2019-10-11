@@ -19,7 +19,7 @@ export default class ScreenHome extends React.Component{
         <View style={styles.titleFlex} >
           <Text style={styles.title}>Cards Game</Text>
           <ContainerSettings />
-          <Search />
+          <Search navigation ={this.props.navigation}/>
           <View style={styles.bottom}>
             <Button
               style={styles.button}

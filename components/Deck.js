@@ -19,11 +19,9 @@ export default class Deck extends React.Component{
       return (
         <View style={styles.container}>
           <View style={styles.half1}>
-
             {names.map(function(name, index){
-                      return <Cards key={index} />;
+                      return <Cards key={index} style={position='absolute'}/>;
                     })}
-            
           </View>
           <View style={styles.half2}>
             
@@ -38,6 +36,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    zIndex: 20
   },
   half1: {
     flex: 1,
