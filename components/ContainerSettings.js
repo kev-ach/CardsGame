@@ -47,12 +47,13 @@ export default class ContainerSettings extends React.Component{
     return (
       <View style={styles.container}>
         <View style={styles.half1}>
-        <CustomPicker
-          options={options}
-          getLabel={item => item.label}
-          fieldTemplate={this.renderField}
-          optionTemplate={this.renderOption}
-        />
+          <CustomPicker
+            modalStyle={{width:80}}
+            options={options}
+            getLabel={item => item.label}
+            fieldTemplate={this.renderField}
+            optionTemplate={this.renderOption}
+          />
         </View>
         <View style={styles.half2}>
           <TextInput
