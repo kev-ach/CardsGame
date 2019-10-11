@@ -1,9 +1,9 @@
 {
   "packagerPort": 19001,
-  "packagerPid": 11212,
+  "packagerPid": 12064,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://9y-9ca.trangrock.cardsgame.exp.direct",
-  "packagerNgrokUrl": "https://packager.9y-9ca.trangrock.cardsgame.exp.direct",
-  "ngrokPid": 4960
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
