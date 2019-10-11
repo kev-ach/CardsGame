@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, PanResponder, Animated,Image } from "react-native";
 
 export default class Cards extends React.Component {
+  
   constructor(props) {
     super(props);
 
@@ -9,9 +10,12 @@ export default class Cards extends React.Component {
       showDraggable: true,
       dropAreaValues: null,
       pan: new Animated.ValueXY(),
-      opacity: new Animated.Value(1)
+      opacity: new Animated.Value(1),
+      source: require('../assets/images/green_back.png'),
+      zIndex: 0,
     };
   }
+
 
   componentWillMount() {
     this._val = { x:0, y:0 }
@@ -30,16 +34,23 @@ export default class Cards extends React.Component {
           null, { dx: this.state.pan.x, dy: this.state.pan.y }
         ]),
         onPanResponderRelease: (e, gesture) => {
-          if (this.isDropArea(gesture)) {
+          /* if (this.isDropArea(gesture)) {
             Animated.timing(this.state.opacity, {
               toValue: 0,
               duration: 1000
             }).start(() =>
               this.setState({
-                showDraggable: false
+                showDraggable: false,
+                source: require('../assets/cards/8H.png')
               })
             );
-          } 
+          }  */
+          this.setState({
+            zIndex: zIndex - 1,
+            source: require('../assets/cards/8H.png')
+          })
+          console.log(this.state.pan.ValueXY())
+
         } 
         /* onPanResponderRelease           : (e, gesture) => {
             Animated.spring(            //Step 1
@@ -48,13 +59,14 @@ export default class Cards extends React.Component {
             ).start();
         } */
       });
-  }
+  }  
 
   isDropArea(gesture) {
-    return gesture.moveY < 200;
+    return gesture.moveY < 200 ;
   }
 
   render() {
+    
     return (
       <View style={{ width: "20%", alignItems: "center" }}>
         {this.renderDraggable()}
@@ -81,25 +93,26 @@ export default class Cards extends React.Component {
 
   renderDraggable() {
     const panStyle = {
-      transform: this.state.pan.getTranslateTransform()
+      transform: this.state.pan.getTranslateTransform(),
     }
     if (this.state.showDraggable) {
       return (
         <View style={{ position: "absolute" }}>
-          <Animated.View
+          <Animated.Image
             {...this.panResponder.panHandlers}
-            style={[panStyle, styles.card, {opacity:this.state.opacity}]}>
-              <Image source={require('../assets/cards/green_back.png')}
-              style={styles.card}/>
-            
-          </Animated.View>
+            style={[panStyle, styles.card, {opacity:this.state.opacity}]}
+            source={this.state.source}/>
         </View>
       );
     }
   }
 }
 
+
+
 let CARD = 50;
+
+
 
 const styles = StyleSheet.create({
     container: {

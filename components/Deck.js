@@ -13,23 +13,47 @@ import Cards from './Cards';
 
 export default class Deck extends React.Component{
 
-    render(){
+  constructor(props) {
+    super(props);
 
-      var names = ['Jake', 'Jon', 'Thruster','Nam'];
-      return (
-        <View style={styles.container}>
-          <View style={styles.half1}>
-            {names.map(function(name, index){
-                      return <Cards key={index} style={position='absolute'}/>;
-                    })}
-          </View>
-          <View style={styles.half2}>
-            
-          </View>   
-          
-        </View>
-      );
+    this.state = {
+      cards: this.initCards(),
+      card: '',
+    };
+    
+  }  
+  
+  initCards () {
+    var cards =[];
+    var colors = ['C','D','H','S'];
+    for(var i in colors){
+      for (var j = 1; j<=13; j++){
+        cards.push(j + colors[i])
+      }
     }
+    return cards
+  };
+
+  render(){
+    
+    var deck = this.state.cards;
+    console.log(this.state.card);
+    return (
+      <View style={styles.container}>
+        <View style={styles.half1}>
+          {deck.map(function(card, index){ 
+                    return <Cards key={index} style={position='absolute'} value={card}>
+
+                    </Cards>;
+                  })}
+        </View>
+        <View style={styles.half2}>
+          
+        </View>   
+        
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
