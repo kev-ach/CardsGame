@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'stretch',
+    zIndex:1
   },
   titleFlex: {
     flex: 1,
@@ -58,11 +59,13 @@ const styles = StyleSheet.create({
   },
   deck_Pioches: {
     flex: 3,
-    backgroundColor: 'grey'
+    backgroundColor: 'grey',
+    zIndex:2
   },
   carte: {
     flex: 2,
-    backgroundColor: 'skyblue'
+    backgroundColor: 'skyblue',
+    zIndex:1
   },
 });
 
