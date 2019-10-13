@@ -5,8 +5,7 @@ import { Component,
   View } from 'react-native';
 import Cards from './Cards';
 import cards from '../assets/card';
-//import Styles from "./assets/css/Styles"
-//import AppNavigator from './navigation/AppNavigator';
+import styles from '../styles/styles';
 
 const card_type = ['clubs', 'diamonds', 'spades', 'hearths'];
 const card_numbers = [
@@ -77,56 +76,23 @@ export default class Deck extends React.Component{
     return sum
   }
 
-
   render(){
     
     return (
-      <View style={styles.container}>
-        <View style={styles.half1}>
+      <View style={styles.container_deck}>
+        <View style={styles.half1_deck}>
           {console.log(this.state.deck)}
           {this.state.deck.map((card, index) => {
-            
             return (
               <Cards key={index} style={position='absolute'} card={card} zIndex={this.findZIndex(index)}/>
             );
-             
           })}
         </View>
-        <View style={styles.half2}>
+        <View style={styles.half2_deck}>
         </View>   
       </View>
     );
   }
 
 }
-
-
-let CARD = 50;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  half1: {
-    flex: 1,
-    backgroundColor: 'green',
-    justifyContent:"center",
-    alignItems:"center",
-  },
-  half2: {
-    flex: 2,
-    backgroundColor: 'transparent',
-  },
-  textPseudo: {
-    padding: 10,
-    fontSize: 15
-  },
-  card      : {
-    borderColor:'red',
-    backgroundColor     : '#1abc9c',
-    width               : CARD*2,
-    height              : CARD*3, 
-    position:"absolute"
-  }
-});
 

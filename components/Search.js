@@ -2,9 +2,8 @@
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View,TextInput,Text,FlatList, ActivityIndicator,TouchableWithoutFeedback, Alert } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
+import styles from '../styles/styles';
 
-//import Styles from "./assets/css/Styles"
-//import AppNavigator from './navigation/AppNavigator';
 
 export default class Search extends React.Component{
 
@@ -51,9 +50,7 @@ export default class Search extends React.Component{
       <View
         style={{
           height: 1,
-          width: '86%',
           backgroundColor: '#CED0CE',
-          marginLeft: '14%',
         }}
       />
     );
@@ -78,7 +75,8 @@ export default class Search extends React.Component{
   renderHeader = () => {
     return (
       <SearchBar
-        placeholder="Type Here..."
+        placeholder="Rechercher"
+        containerStyle={{backgroundColor: 'transparent'}}
         lightTheme
         round
         onChangeText={text => this.searchFilterFunction(text)}
@@ -133,21 +131,4 @@ export default class Search extends React.Component{
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'skyblue',
-    flexDirection: 'column',
-    alignItems: 'stretch',
-  },
-  titleFlex: {
-    flex: 1,
-    height: 50, 
-    backgroundColor: 'powderblue'
-  },
-  title: {
-    fontSize: 30,
-    textAlign: 'center',
-    color:'white',
-  },
-});
 

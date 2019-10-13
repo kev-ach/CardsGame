@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, PanResponder, Animated,Image } from "react-native";
+import styles from '../styles/styles';
 
 export default class Cards extends React.Component {
   
@@ -51,6 +52,7 @@ export default class Cards extends React.Component {
             zIndex: this.state.zIndex,
             source: this.state.card
           })
+          console.log(this.state.pan)
         } 
         /* onPanResponderRelease           : (e, gesture) => {
             Animated.spring(            //Step 1
@@ -95,44 +97,3 @@ export default class Cards extends React.Component {
     }
   }
 }
-
-
-
-let CARD = 50;
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'row',
-    },
-    half1: {
-      flex: 1,
-      flexDirection: "row",
-      backgroundColor: 'green',
-    },
-    half2: {
-      flex: 2,
-      backgroundColor: 'transparent',
-    },
-    textPseudo: {
-      padding: 10,
-      fontSize: 15
-    },
-    dropZone    : {
-      height         : 100,
-      backgroundColor:'#2c3e50'
-    },
-    text        : {
-        marginTop   : 25,
-        marginLeft  : 5,
-        marginRight : 5,
-        textAlign   : 'center',
-        color       : '#fff'
-    },
-    card      : {
-        borderColor:'red',
-        backgroundColor     : '#1abc9c',
-        width               : CARD*2,
-        height              : CARD*3, 
-    }
-  });
