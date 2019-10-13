@@ -1,9 +1,9 @@
 {
   "packagerPort": 19001,
-  "packagerPid": 22456,
+  "packagerPid": 2040,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://yr-9z8.anonymous.cardsgame.exp.direct",
+  "packagerNgrokUrl": "https://packager.yr-9z8.anonymous.cardsgame.exp.direct",
+  "ngrokPid": 11580
 }

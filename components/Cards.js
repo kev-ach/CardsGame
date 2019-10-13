@@ -12,7 +12,8 @@ export default class Cards extends React.Component {
       pan: new Animated.ValueXY(),
       opacity: new Animated.Value(1),
       source: require('../assets/images/green_back.png'),
-      zIndex: 0,
+      card:null,
+      zIndex: null,
     };
   }
 
@@ -45,12 +46,11 @@ export default class Cards extends React.Component {
               })
             );
           }  */
-          this.setState({
-            zIndex: zIndex - 1,
-            source: require('../assets/cards/8H.png')
-          })
-          console.log(this.state.pan.ValueXY())
 
+          this.setState({
+            zIndex: this.state.zIndex,
+            source: this.state.card
+          })
         } 
         /* onPanResponderRelease           : (e, gesture) => {
             Animated.spring(            //Step 1
@@ -74,34 +74,22 @@ export default class Cards extends React.Component {
     );
   }
 
-  /* renderDraggable() {
-    const panStyle = {
-      transform: this.state.pan.getTranslateTransform()
-    }
-    if (this.state.showDraggable) {
-      return (
-        <View style={styles.draggableContainer}>
-            <Animated.View 
-                {...this.panResponder.panHandlers}
-                style={[this.state.pan.getLayout(), styles.card]}>
-                <Text style={styles.text}>Drag me!</Text>
-            </Animated.View>
-        </View>
-      );
-    }
-  } */
 
   renderDraggable() {
     const panStyle = {
       transform: this.state.pan.getTranslateTransform(),
+      zIndex: this.state.zIndex,
     }
     if (this.state.showDraggable) {
+      this.state.card = this.props.card.image
+      this.state.zIndex = this.props.zIndex
       return (
-        <View style={{ position: "absolute" }}>
-          <Animated.View
+        <View style={{ position: "absolute"}}>
+          <Animated.Image
             {...this.panResponder.panHandlers}
-            style={[panStyle, styles.card, {opacity:this.state.opacity}]}
-            source={this.state.source}/>
+            style={[panStyle, styles.card, {opacity:this.state.opacity}, {zIndex: panStyle.zIndex}]}
+            source={this.state.source}
+            />
         </View>
       );
     }
@@ -111,8 +99,6 @@ export default class Cards extends React.Component {
 
 
 let CARD = 50;
-
-
 
 const styles = StyleSheet.create({
     container: {
@@ -148,6 +134,5 @@ const styles = StyleSheet.create({
         backgroundColor     : '#1abc9c',
         width               : CARD*2,
         height              : CARD*3, 
-        position:"absolute"
     }
   });
