@@ -47,7 +47,7 @@ export default class ScreenHome extends React.Component{
                   minimumTrackTintColor="green"
                   maximumTrackTintColor="#000000"
                 />
-                <Button style={styles.btn_close_modal} onPress={() => this.closeModal()} title="Close modal" ></Button>
+                <Button style={styles.btn_close_modal} onPress={() => {this.closeModal(); this.props.navigation.navigate('Game');}} title="Jouer" ></Button>
               </View>
             </View>
           </Modal>
@@ -55,7 +55,7 @@ export default class ScreenHome extends React.Component{
             <Button
               style={styles.button}
               type="outline"
-              onPress={() => this.openModal()} title="Jouer" />
+              onPress={() => this.openModal()} title="Crée une partie" />
               {/*onPress={() => this.props.navigation.navigate('Game')}*/}
           </View>
         </View>
