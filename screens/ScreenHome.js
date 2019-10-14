@@ -1,12 +1,10 @@
-import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
-import * as Font from 'expo-font';
+
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View,TextInput,Text, Modal } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import ContainerSettings from '../components/ContainerSettings';
 import Search from '../components/Search';
 import { Button } from 'react-native-elements';
+import styles from '../styles/styles';
 import { Slider } from 'react-native';
 
 export default class ScreenHome extends React.Component{
@@ -28,7 +26,7 @@ export default class ScreenHome extends React.Component{
         <View style={styles.titleFlex} >
           <Text style={styles.title}>Cards Game</Text>
           <ContainerSettings />
-          <Search />
+          <Search navigation ={this.props.navigation}/>
           <Modal
             transparent = {true}
             visible={this.state.modalVisible}

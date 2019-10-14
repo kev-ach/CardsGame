@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, PanResponder, Animated } from "react-native";
+import { StyleSheet, View, Text, PanResponder, Animated,Image } from "react-native";
+import styles from '../styles/styles';
 
 export default class Cards extends React.Component {
+  
   constructor(props) {
     super(props);
 
@@ -9,9 +11,13 @@ export default class Cards extends React.Component {
       showDraggable: true,
       dropAreaValues: null,
       pan: new Animated.ValueXY(),
-      opacity: new Animated.Value(1)
+      opacity: new Animated.Value(1),
+      source: require('../assets/images/green_back.png'),
+      card:null,
+      zIndex: null,
     };
   }
+
 
   componentWillMount() {
     this._val = { x:0, y:0 }
@@ -30,16 +36,23 @@ export default class Cards extends React.Component {
           null, { dx: this.state.pan.x, dy: this.state.pan.y }
         ]),
         onPanResponderRelease: (e, gesture) => {
-          if (this.isDropArea(gesture)) {
+          /* if (this.isDropArea(gesture)) {
             Animated.timing(this.state.opacity, {
               toValue: 0,
               duration: 1000
             }).start(() =>
               this.setState({
-                showDraggable: false
+                showDraggable: false,
+                source: require('../assets/cards/8H.png')
               })
             );
-          } 
+          }  */
+
+          this.setState({
+            zIndex: this.state.zIndex,
+            source: this.state.card
+          })
+          console.log(this.state.pan)
         } 
         /* onPanResponderRelease           : (e, gesture) => {
             Animated.spring(            //Step 1
@@ -48,13 +61,14 @@ export default class Cards extends React.Component {
             ).start();
         } */
       });
-  }
+  }  
 
   isDropArea(gesture) {
-    return gesture.moveY < 200;
+    return gesture.moveY < 200 ;
   }
 
   render() {
+    
     return (
       <View style={{ width: "20%", alignItems: "center" }}>
         {this.renderDraggable()}
@@ -62,75 +76,24 @@ export default class Cards extends React.Component {
     );
   }
 
-  /* renderDraggable() {
-    const panStyle = {
-      transform: this.state.pan.getTranslateTransform()
-    }
-    if (this.state.showDraggable) {
-      return (
-        <View style={styles.draggableContainer}>
-            <Animated.View 
-                {...this.panResponder.panHandlers}
-                style={[this.state.pan.getLayout(), styles.card]}>
-                <Text style={styles.text}>Drag me!</Text>
-            </Animated.View>
-        </View>
-      );
-    }
-  } */
 
   renderDraggable() {
     const panStyle = {
-      transform: this.state.pan.getTranslateTransform()
+      transform: this.state.pan.getTranslateTransform(),
+      zIndex: this.state.zIndex,
     }
     if (this.state.showDraggable) {
+      this.state.card = this.props.card.image
+      this.state.zIndex = this.props.zIndex
       return (
-        <View style={{ position: "absolute" }}>
+        <View style={{ position: "absolute"}}>
           <Animated.Image
             {...this.panResponder.panHandlers}
-            style={[panStyle, styles.card, {opacity:this.state.opacity}]}
-            source={require('../assets/cards/gray_back.png')}
-          />
+            style={[panStyle, styles.card, {opacity:this.state.opacity}, {zIndex: panStyle.zIndex}]}
+            source={this.state.source}
+            />
         </View>
       );
     }
   }
 }
-
-let CARD = 50;
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'row',
-    },
-    half1: {
-      flex: 1,
-      flexDirection: "row",
-      backgroundColor: 'green',
-    },
-    half2: {
-      flex: 2,
-      backgroundColor: 'transparent',
-    },
-    textPseudo: {
-      padding: 10,
-      fontSize: 15
-    },
-    dropZone    : {
-      height         : 100,
-      backgroundColor:'#2c3e50'
-    },
-    text        : {
-        marginTop   : 25,
-        marginLeft  : 5,
-        marginRight : 5,
-        textAlign   : 'center',
-        color       : '#fff'
-    },
-    card      : {
-        backgroundColor     : '#1abc9c',
-        width               : CARD*2,
-        height              : CARD*3,
-    }
-  });
