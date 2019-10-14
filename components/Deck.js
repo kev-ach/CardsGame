@@ -82,7 +82,6 @@ export default class Deck extends React.Component{
       
       <View style={styles.container_deck}>
         <View style={styles.half1_deck}>
-          {console.log(this.state.deck)}
           {this.state.deck.map((card, index) => {
             return (
               <Cards key={index} style={position='absolute'} card={card} zIndex={this.findZIndex(index)}/>
