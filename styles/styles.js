@@ -11,7 +11,7 @@ export default (styles = StyleSheet.create({
     },
     titleFlex: {
         flex: 1,
-        height: 50, 
+        height: 50,
     },
     title: {
         fontSize: 30,
@@ -88,7 +88,7 @@ export default (styles = StyleSheet.create({
       },
     titleFlex: {
         flex: 1,
-        height: 50, 
+        height: 50,
     },
     title_search: {
         fontSize: 30,
@@ -103,7 +103,7 @@ export default (styles = StyleSheet.create({
         borderColor:'red',
         backgroundColor     : '#1abc9c',
         width               : CARD*2,
-        height              : CARD*3, 
+        height              : CARD*3,
     },
     container_deck: {
         flex: 1,
@@ -156,4 +156,44 @@ export default (styles = StyleSheet.create({
         backgroundColor: 'skyblue',
         zIndex:1
       },
+      modalContainer: {
+        height: 415 ,
+        width: '90%',
+        marginTop: 370,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        borderWidth: 2,
+        padding: 15,
+        alignItems: 'center',
+        borderRadius: 10,
+        borderColor: 'rgba(0, 0, 0, 0.1)',
+        justifyContent: 'center',
+        backgroundColor: 'white'
+      },
+      text_creer_partie: {
+        width: 300,
+        marginTop: -100,
+        fontSize: 25,
+        textAlign: 'center',
+        borderWidth: 2,
+      },
+      input_cree_partie: {
+        width: 250,
+        height: 40,
+        marginTop: 30,
+        backgroundColor: '#F1F1F1',
+        borderRadius: 4,
+      },
+      text_nbr_joueur: {
+        width: 300,
+        marginTop: 20,
+        fontSize: 25,
+        textAlign: 'center',
+      },
+      btn_close_modal: {
+        marginTop: 50,
+      },
+      innerContainer: {
+        alignItems: 'center',
+      }
 }));
