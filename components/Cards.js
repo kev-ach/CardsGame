@@ -18,7 +18,6 @@ export default class Cards extends React.Component {
     };
   }
 
-
   componentWillMount() {
     this._val = { x:0, y:0 }
     this.state.pan.addListener((value) => this._val = value);
@@ -36,39 +35,18 @@ export default class Cards extends React.Component {
           null, { dx: this.state.pan.x, dy: this.state.pan.y }
         ]),
         onPanResponderRelease: (e, gesture) => {
-          /* if (this.isDropArea(gesture)) {
-            Animated.timing(this.state.opacity, {
-              toValue: 0,
-              duration: 1000
-            }).start(() =>
-              this.setState({
-                showDraggable: false,
-                source: require('../assets/cards/8H.png')
-              })
-            );
-          }  */
-
           this.setState({
             zIndex: this.state.zIndex,
             source: this.state.card
           })
-          console.log(this.state.pan)
         } 
-        /* onPanResponderRelease           : (e, gesture) => {
-            Animated.spring(            //Step 1
-                this.state.pan,         //Step 2
-                {toValue:{x:0,y:0}}     //Step 3
-            ).start();
-        } */
       });
   }  
 
   isDropArea(gesture) {
     return gesture.moveY < 200 ;
   }
-
   render() {
-    
     return (
       <View style={{ width: "20%", alignItems: "center" }}>
         {this.renderDraggable()}

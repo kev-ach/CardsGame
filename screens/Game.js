@@ -15,7 +15,6 @@ export default class Game extends React.Component{
         <View style={styles.deck_Pioches}>
             <Deck/>
         </View>
-        <View style={styles.carte}></View>
       </View>
     );
   }

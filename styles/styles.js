@@ -111,7 +111,7 @@ export default (styles = StyleSheet.create({
     },
     half1_deck: {
         flex: 1,
-        backgroundColor: 'green',
+        backgroundColor: 'blue',
         justifyContent:"center",
         alignItems:"center",
     },

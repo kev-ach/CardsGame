@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { Component,
   StyleSheet,
   View } from 'react-native';
 import Cards from './Cards';
+import CardsTest from './CardsTest';
 import cards from '../assets/card';
 import styles from '../styles/styles';
 
@@ -79,6 +79,7 @@ export default class Deck extends React.Component{
   render(){
     
     return (
+      
       <View style={styles.container_deck}>
         <View style={styles.half1_deck}>
           {console.log(this.state.deck)}
@@ -87,12 +88,9 @@ export default class Deck extends React.Component{
               <Cards key={index} style={position='absolute'} card={card} zIndex={this.findZIndex(index)}/>
             );
           })}
-        </View>
-        <View style={styles.half2_deck}>
-        </View>   
+        </View> 
       </View>
     );
   }
 
 }
-
