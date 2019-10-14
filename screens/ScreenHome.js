@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import ContainerSettings from '../components/ContainerSettings';
 import Search from '../components/Search';
 import { Button } from 'react-native-elements';
+import { Slider } from 'react-native';
 
 export default class ScreenHome extends React.Component{
   state = {
@@ -29,14 +30,24 @@ export default class ScreenHome extends React.Component{
           <ContainerSettings />
           <Search />
           <Modal
+            transparent = {true}
             visible={this.state.modalVisible}
-            animationType={'slide'}
+            animationType={'fade'}
             onRequestClose={() => this.closeModal()} >
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
                 <Text style={styles.text_creer_partie}>Créer une partie</Text>
-                <TextInput placeholder="Créer une partie" />
-                <Button onPress={() => this.closeModal()} title="Close modal" ></Button>
+                <TextInput style={styles.input_cree_partie} placeholder=" Nom de la partie" />
+                <Text style={styles.text_nbr_joueur}>Nombre de joueurs : </Text>
+                <Slider
+                  style={{width: 200, height: 40}}
+                  minimumValue={0}
+                  maximumValue={4}
+                  step={1}
+                  minimumTrackTintColor="green"
+                  maximumTrackTintColor="#000000"
+                />
+                <Button style={styles.btn_close_modal} onPress={() => this.closeModal()} title="Close modal" ></Button>
               </View>
             </View>
           </Modal>
@@ -87,16 +98,43 @@ const styles = StyleSheet.create({
     width: 300,
   },
   modalContainer: {
-    flex: 1,
+    height: 415 ,
+    width: '90%',
+    marginTop: 370,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    borderWidth: 2,
+    padding: 15,
+    alignItems: 'center',
+    borderRadius: 10,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
     justifyContent: 'center',
-    backgroundColor: 'grey',
+    backgroundColor: 'white'
+  },
+  text_creer_partie: {
+    width: 300,
+    marginTop: -100,
+    fontSize: 25,
+    textAlign: 'center',
+    borderWidth: 2,
+  },
+  input_cree_partie: {
+    width: 250,
+    height: 40,
+    marginTop: 30,
+    backgroundColor: '#F1F1F1',
+    borderRadius: 4,
+  },
+  text_nbr_joueur: {
+    width: 300,
+    marginTop: 20,
+    fontSize: 25,
+    textAlign: 'center',
+  },
+  btn_close_modal: {
+    marginTop: 50,
   },
   innerContainer: {
     alignItems: 'center',
-  },
-  text_creer_partie: {
-    fontSize: 30,
-    textAlign: 'center',
-    marginBottom: 500
   }
 });
