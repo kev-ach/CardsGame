@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View,TextInput,Text,FlatList, ActivityIndicator,TouchableWithoutFeedback, Alert } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
@@ -130,5 +129,4 @@ export default class Search extends React.Component{
     );
   }
 }
-
 
