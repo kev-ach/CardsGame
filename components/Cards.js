@@ -29,6 +29,9 @@ export default class Cards extends React.Component {
             x: this._val.x,
             y:this._val.y
           })
+          this.setState({
+            zIndex: this.state.zIndex,
+          })
           this.state.pan.setValue({ x:0, y:0})
         },
         onPanResponderMove: Animated.event([ 
@@ -36,7 +39,6 @@ export default class Cards extends React.Component {
         ]),
         onPanResponderRelease: (e, gesture) => {
           this.setState({
-            zIndex: this.state.zIndex,
             source: this.state.card
           })
         } 
