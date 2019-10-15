@@ -1,0 +1,47 @@
+Resources:
+  GameTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: cardgames-games
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: gameId
+          AttributeType: S
+      # Shard game by gameId
+      KeySchema:
+        - AttributeName: gameId
+          KeyType: HASH
+  PlayerTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: cardgames-players
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: connectionId
+          AttributeType: S
+        - AttributeName: gameId
+          AttributeType: S
+        - AttributeName: joinedAt
+          AttributeType: N
+      KeySchema:
+        # Shard connections by connectionId
+        - AttributeName: connectionId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: gameIdGSI
+          KeySchema:
+            # Shard connections by gameId
+            - AttributeName: gameId
+              KeyType: HASH
+            # Sort using joinedAt timestamp
+            - AttributeName: joinedAt
+              KeyType: RANGE
+          # ProvisionedThroughput:
+          #   ReadCapacityUnits: 1
+          #   WriteCapacityUnits: 1
+          Projection:
+            ProjectionType: "ALL"
+      # Kill AFK connections after time specified in custom.sessionTTL
+      TimeToLiveSpecification:
+        Enabled: true
+        AttributeName: terminateAt

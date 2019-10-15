@@ -1,8 +1,9 @@
 # change to your own server next 3 lines
-
-# org: mugiwaranojo
-# app: cardgames
+org: trangrock
+app: websocket
 # service: cardgames
+
+service: aws-nodejs
 
 plugins:
   - serverless-webpack

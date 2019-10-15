@@ -11,7 +11,8 @@ export default class ContainerSettings extends React.Component{
 
     this.state = {
       pickerSelection: 'Default value!',
-      pickerDisplayed: false
+      pickerDisplayed: false,
+      username: ''
     }
   }
 
@@ -58,6 +59,13 @@ export default class ContainerSettings extends React.Component{
           <TextInput
             style={styles.textPseudo}
             placeholder="Pseudo"
+            label="Username"
+            name="username"
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={(text) => this.setState({username: text})}
+            value={this.state.text}
+            returnKeyType="go"
           />
         </View>  
       </View>
