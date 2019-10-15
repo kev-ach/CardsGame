@@ -1,0 +1,102 @@
+# change to your own server next 3 lines
+
+# org: mugiwaranojo
+# app: cardgames
+# service: cardgames
+
+plugins:
+  - serverless-webpack
+  - serverless-websockets-plugin
+  
+custom:
+  stage: ${opt:stage, 'dev'}
+  sessionTTL: 600
+  webpack:
+    webpackConfig: 'webpack.config.js'   # Name of webpack configuration file
+    includeModules: true   # Node modules configuration for packaging
+    packager: 'npm'   # Packager that will be used to package your external modules
+    excludeFiles: src/**/*.test.js # Provide a glob for files to ignore
+
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: eu-west-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "dynamodb:*"
+      Resource:
+        - "Fn::GetAtt": [PlayerTable, Arn]
+        - "Fn::GetAtt": [GameTable, Arn]
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/cardgames-players/index/*"
+    - Effect: Allow
+      Action:
+        - "execute-api:ManageConnections"
+      Resource:
+        - "arn:aws:execute-api:*:*:**/@connections/*"
+
+functions:
+  onConnect:
+    handler: handler.onConnect
+    events:
+      - websocket:
+          route: $connect
+          routeKey: $connect
+  onDisconnect:
+    handler: handler.onDisconnect
+    events:
+      - websocket:
+          route: $disconnect
+          routeKey: $disconnect
+  defaultHandler:
+    handler: handler.defaultHandler
+    events:
+      - websocket:
+            route: $default
+            routeKey: $default
+  setNickname:
+    handler: handler.setNickname
+    events:
+      - websocket:
+          route: rename
+          routeKey: rename
+  getGames:
+    handler: handler.getGames
+    events:
+      - websocket:
+          route: getgames
+          routeKey: getgames
+  createGame:
+    handler:  handler.createGame
+    events:
+      - websocket:
+          route: creategame
+          routeKey: creategame
+  joinGame:
+    handler: handler.joinGame
+    events:
+      - websocket:
+          route: joingame
+          routeKey: joingame
+  startGame:
+    handler: handler.startGame
+    events:
+      - websocket:
+          route: startgame
+          routeKey: startgame
+  drawCard:
+    handler:  handler.drawCard
+    events:
+      - websocket:
+          route: drawcard
+          routeKey: drawcard
+  playCard:
+    handler:  handler.playCard
+    events:
+      - websocket:
+          route: playcard
+          routeKey: playcard
+    
+resources:
+  - ${file(./src/dynamodb.yml)}
