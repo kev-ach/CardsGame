@@ -33,7 +33,7 @@ export default class ScreenHome extends React.Component{
         <View style={styles.titleFlex} >
           <Text style={styles.title}></Text>
           <ContainerSettings />
-          <Search navigation ={this.props.navigation}/>
+          <Search navigation ={this.props.navigation} nbPlayers = {this.state.value_slider} />
           <Modal
             transparent = {true}
             backgroundColor = {'rgba(0,0,0,0.5)'}

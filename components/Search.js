@@ -18,6 +18,7 @@ export default class Search extends React.Component{
         title: 'Poker',
         user: 'https://0.gravatar.com/avatar/9b1a243cd301d1ba99865937f4e7cc94?s=130&d=mm&r=g',
         by: 'Joker152',
+        nbPlayer: 2
       },{
         id: 2,
         image: 'https://www.fivelittlechefs.com/wp-content/uploads/2012/02/strawberry-rocky-road-recipe.jpg',
@@ -25,6 +26,7 @@ export default class Search extends React.Component{
         title: 'Président',
         user: 'https://0.gravatar.com/avatar/9b1a243cd301d1ba99865937f4e7cc94?s=130&d=mm&r=g',
         by: 'Fear the bear',
+        nbPlayer: 3
     },
     {
         id: 3,
@@ -33,6 +35,7 @@ export default class Search extends React.Component{
         title: 'Texas Hold\'em',
         user: 'https://0.gravatar.com/avatar/9b1a243cd301d1ba99865937f4e7cc94?s=130&d=mm&r=g',
         by: 'Pro players',
+        nbPlayer: 4
     }],
       error: null,
     };
@@ -93,7 +96,7 @@ export default class Search extends React.Component{
       //body
       'Rejoindre la partie?',
       [
-        {text: 'Oui', onPress: () => this.props.navigation.navigate('Game')},
+        {text: 'Oui', onPress: () => this.props.navigation.navigate('Game',{ nbPlayers: this.state.data.nbPlayer})},
         {text: 'Non', onPress: () => console.log('No Pressed'), style: 'cancel'},
       ],
       { cancelable: false }
