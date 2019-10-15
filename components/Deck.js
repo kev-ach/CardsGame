@@ -3,7 +3,6 @@ import { Component,
   StyleSheet,
   View } from 'react-native';
 import Cards from './Cards';
-import CardsTest from './CardsTest';
 import cards from '../assets/card';
 import styles from '../styles/styles';
 

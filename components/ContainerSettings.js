@@ -87,7 +87,7 @@ export default class ContainerSettings extends React.Component{
     return (
       <View style={styles.optionContainer}>
         <View style={styles.innerContainer}>
-          <Emoji name={getLabel(item)} style={{fontSize: 50}} />
+          <Emoji name={getLabel(item)} style={{fontSize: 35}} />
         </View>
       </View>
     )

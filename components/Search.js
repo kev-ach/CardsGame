@@ -15,24 +15,24 @@ export default class Search extends React.Component{
         id: 1,
         image: 'https://www.fivelittlechefs.com/wp-content/uploads/2016/02/stpatricks-soft-pretzel.jpg',
         food: 'Cinnamon sugar soft pretzel',
-        title: 'Perfect soft pretzels',
+        title: 'Poker',
         user: 'https://0.gravatar.com/avatar/9b1a243cd301d1ba99865937f4e7cc94?s=130&d=mm&r=g',
-        by: 'Kimberly',
+        by: 'Joker152',
       },{
         id: 2,
         image: 'https://www.fivelittlechefs.com/wp-content/uploads/2012/02/strawberry-rocky-road-recipe.jpg',
         food: 'Strawberry Rocky Road',
-        title: 'Awesome strawberry aww',
+        title: 'Président',
         user: 'https://0.gravatar.com/avatar/9b1a243cd301d1ba99865937f4e7cc94?s=130&d=mm&r=g',
-        by: 'Kimberly',
+        by: 'Fear the bear',
     },
     {
         id: 3,
         image: 'https://www.fivelittlechefs.com/wp-content/uploads/2016/02/valentine-coconut-macaroons.jpg',
         food: 'Coconut Macaroons',
-        title: 'Coconut macaroons is truly an easy recipe',
+        title: 'Texas Hold\'em',
         user: 'https://0.gravatar.com/avatar/9b1a243cd301d1ba99865937f4e7cc94?s=130&d=mm&r=g',
-        by: 'Kimberly',
+        by: 'Pro players',
     }],
       error: null,
     };
@@ -75,7 +75,7 @@ export default class Search extends React.Component{
     return (
       <SearchBar
         placeholder="Rechercher"
-        containerStyle={{backgroundColor: 'transparent'}}
+        containerStyle={{backgroundColor: 'transparent', borderStyle: 'dotted'}}
         lightTheme
         round
         onChangeText={text => this.searchFilterFunction(text)}
@@ -111,7 +111,7 @@ export default class Search extends React.Component{
     }
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 2 }}>
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => (

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View,TextInput,Text, Modal } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View,TextInput,Text, Modal,ImageBackground, TouchableOpacity } from 'react-native';
 import ContainerSettings from '../components/ContainerSettings';
 import Search from '../components/Search';
 import { Button } from 'react-native-elements';
@@ -28,9 +28,10 @@ export default class ScreenHome extends React.Component{
   render(){
     const {value_slider} = this.state;
     return (
-      <View style={styles.container}>
+      <ImageBackground source={require('../assets/images/board.png')} style={{flex: 1}}>
+        <View style={styles.container}>
         <View style={styles.titleFlex} >
-          <Text style={styles.title}>Cards Game</Text>
+          <Text style={styles.title}></Text>
           <ContainerSettings />
           <Search navigation ={this.props.navigation}/>
           <Modal
@@ -39,6 +40,8 @@ export default class ScreenHome extends React.Component{
             visible={this.state.modalVisible}
             animationType={'fade'}
             onRequestClose={() => this.closeModal()} >
+              <TouchableOpacity 
+                onPressOut={() => {this.closeModal();}} >
             <View style={styles.modalContainer}>
               <View style={styles.innerContainer}>
                 <Text style={styles.text_creer_partie}>Créer une partie</Text>
@@ -54,21 +57,22 @@ export default class ScreenHome extends React.Component{
                   onValueChange={(value_slider) => this.setState({ value_slider })}
                   value={this.state.value_slider}
                 />
-                {/*<Players nbrPlayers={this.state.value_slider} visible={false}/>*/}
-                <Button style={styles.btn_close_modal} onPress={() => {this.closeModal(); this.props.navigation.navigate('Game',{nbPlayers: this.state.value_slider, })}} title="Jouer" ></Button>
-                <Button style={styles.btn_close_modal} onPress={() => this.closeModal()} title="Annuler" ></Button>
+                <Button  onPress={() => {this.closeModal(); this.props.navigation.navigate('Game',{nbPlayers: this.state.value_slider, })}} title="Jouer" ></Button>
+              
               </View>
             </View>
+            </TouchableOpacity>
           </Modal>
           <View style={styles.bottom}>
             <Button
               style={styles.button}
-              type="outline"
               onPress={() => this.openModal()} title="Crée une partie" />
               {/*onPress={() => this.props.navigation.navigate('Game')}*/}
           </View>
         </View>
       </View>
+      </ImageBackground>
+      
     );
   }
 }
