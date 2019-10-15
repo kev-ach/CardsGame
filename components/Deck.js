@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Component,
   StyleSheet,
@@ -79,20 +78,17 @@ export default class Deck extends React.Component{
   render(){
     
     return (
+      
       <View style={styles.container_deck}>
         <View style={styles.half1_deck}>
-          {console.log(this.state.deck)}
           {this.state.deck.map((card, index) => {
             return (
               <Cards key={index} style={position='absolute'} card={card} zIndex={this.findZIndex(index)}/>
             );
           })}
-        </View>
-        <View style={styles.half2_deck}>
-        </View>   
+        </View> 
       </View>
     );
   }
 
 }
-

@@ -7,7 +7,7 @@ export default (styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'stretch',
-        paddingTop:100
+        paddingTop:50
     },
     titleFlex: {
         flex: 1,
@@ -16,7 +16,7 @@ export default (styles = StyleSheet.create({
     title: {
         fontSize: 30,
         textAlign: 'center',
-        color:'grey',
+        color:'#D7004A',
     },
     search: {
         flex: 5,
@@ -44,10 +44,11 @@ export default (styles = StyleSheet.create({
     },
     half2_settings: {
         flex: 3,
-        backgroundColor: 'red',
-        borderTopRightRadius: 10,
-        borderBottomRightRadius: 10,
-        justifyContent:"center"
+        borderRadius: 10,
+        backgroundColor: '#f4fcf1',
+        justifyContent:"center",
+        borderColor: 'gray',
+        borderWidth: 1
     },
     textPseudo: {
         padding: 10,
@@ -105,15 +106,21 @@ export default (styles = StyleSheet.create({
         width               : CARD*2,
         height              : CARD*3,
     },
+    card_picker      : {
+      borderColor:'red',
+      backgroundColor     : '#1abc9c',
+      width               : 30,
+      height              : 52,
+    },
     container_deck: {
-        flex: 1,
+        flex: 5,
         flexDirection: 'row',
     },
     half1_deck: {
         flex: 1,
-        backgroundColor: 'green',
         justifyContent:"center",
-        alignItems:"center",
+        marginLeft: 40,
+        marginBottom: 180
     },
     half2_deck: {
         flex: 2,
@@ -121,7 +128,6 @@ export default (styles = StyleSheet.create({
     },
     container_game: {
         flex: 1,
-        flexDirection: 'column',
         alignItems: 'stretch',
         zIndex:1
       },
@@ -144,7 +150,8 @@ export default (styles = StyleSheet.create({
       },
       players: {
         flex: 1,
-        backgroundColor: 'red'
+        flexDirection:'row',
+        backgroundColor: '#D9A152'
       },
       deck_Pioches: {
         flex: 3,
@@ -191,7 +198,7 @@ export default (styles = StyleSheet.create({
         textAlign: 'center',
       },
       btn_close_modal: {
-        marginTop: 50,
+        
       },
       innerContainer: {
         alignItems: 'center',
